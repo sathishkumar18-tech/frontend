@@ -5,7 +5,7 @@ function App() {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const API = "https://my-backend.onrender.com";
+  const API = "https://backend-1-4twd.onrender.com";
 
   const sendMessage = async () => {
     await axios.post(`${API}/message`, { text });
