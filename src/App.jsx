@@ -5,7 +5,8 @@ function App() {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const API = "https://backend-1-4twd.onrender.com";
+  const API = import.meta.env.VITE_API_URL;
+
 
   const sendMessage = async () => {
     await axios.post(`${API}/message`, { text });
