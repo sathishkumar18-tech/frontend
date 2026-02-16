@@ -4,27 +4,42 @@ import axios from "axios";
 function App() {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
-//const API = import.meta.env.VITE_API_URL;
-//  const API = import.meta.env.VITE_API_URL;
-const API = import.meta.env.VITE_API_URL;
-//const API = import.meta.env.VITE_API_URL;
+
+  // ✅ ENV variable (from Vercel)
+  const API = import.meta.env.VITE_API_URL;
+
   const sendMessage = async () => {
-    await axios.post(`${API}/message`, { text });
-    loadMessages();
+    if (!text.trim()) return;
+
+    try {
+      await axios.post(`${API}/message`, { text });
+      setText(""); // clear input
+      loadMessages();
+    } catch (err) {
+      console.error("Send error:", err);
+    }
   };
 
   const loadMessages = async () => {
-    const res = await axios.get(`${API}/messages`);
-    setMessages(res.data);
+    try {
+      const res = await axios.get(`${API}/messages`);
+      setMessages(res.data);
+    } catch (err) {
+      console.error("Load error:", err);
+    }
   };
 
   useEffect(() => {
-    loadMessages();
-  }, []);
+    if (API) {
+      loadMessages();
+    } else {
+      console.error("API URL is undefined");
+    }
+  }, [API]);
 
   return (
-    <div>
-      <h1> Messages</h1>
+    <div style={{ padding: "20px" }}>
+      <h1>Messages</h1>
 
       <input
         value={text}
