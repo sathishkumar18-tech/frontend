@@ -7,7 +7,7 @@ function App() {
 
   // ✅ ENV variable (from Vercel)
    const API = "https://backend-1-4twd.onrender.com";
-;
+
 
   const sendMessage = async () => {
     if (!text.trim()) return;
