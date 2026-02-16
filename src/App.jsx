@@ -4,10 +4,10 @@ import axios from "axios";
 function App() {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
-
-  const API = import.meta.env.VITE_API_URL;
-
-
+//const API = import.meta.env.VITE_API_URL;
+//  const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL;
+//const API = import.meta.env.VITE_API_URL;
   const sendMessage = async () => {
     await axios.post(`${API}/message`, { text });
     loadMessages();
