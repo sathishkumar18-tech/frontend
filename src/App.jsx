@@ -6,7 +6,8 @@ function App() {
   const [messages, setMessages] = useState([]);
 
   // ✅ ENV variable (from Vercel)
-  const API = import.meta.env.VITE_API_URL;
+   const API = "https://backend-1-4twd.onrender.com";
+;
 
   const sendMessage = async () => {
     if (!text.trim()) return;
